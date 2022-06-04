@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Enuch/Node-server#readme",
   "dependencies": {
+    "consign": "^0.1.6",
     "express": "^4.18.1"
   }
 }
