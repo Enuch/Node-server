@@ -1,28 +1,12 @@
-const http = require('http');
+const express = require('express');
+let routesIndex = require('./routes/index');
+let routesUsers = require('./routes/users');
 
-let server = http.createServer((req, res) => {
-    console.log('URL: ' + req.url);
-    console.log('METHOD: ' + req.method);
+let app = express();
 
-    switch(req.url) {
-        case '/':
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/html');
-            res.end('<h2>Hello World!</h2>');
-            break;
-        case '/users':
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({
-                users: [{
-                    name: 'Enuch',
-                    id: 1
-                }]
-            }));
-            break;
-    }
-});
+app.use(routesIndex);
+app.use('/users', routesUsers);
 
-server.listen(3000, 'localhost', () => {
+app.listen(3000, 'localhost', () => {
     console.log('Server on');
 });
