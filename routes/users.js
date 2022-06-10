@@ -44,6 +44,17 @@ module.exports = (app) => {
             } else {
                 res.status(200).json(user);
             }
+        });
+    });
+
+    routeID.put((req, res) => {
+
+        db.update({_id:req.params.id}, req.body, error => {
+            if (error) {
+                app.utils.error.send(error, req, res);
+            } else {
+                res.status(200).json(Object.assign(req.params, req.body));
+            }
         })
-    })
+    });
 };
