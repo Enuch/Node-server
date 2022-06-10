@@ -33,4 +33,17 @@ module.exports = (app) => {
             }
         });
     });
+
+    let routeID = app.route('/users/:id');
+
+    routeID.get((req, res) => {
+
+        db.findOne({_id:req.params.id}).exec((error, user) => {
+            if (error) {
+                app.utils.error.send(error, req, res);
+            } else {
+                res.status(200).json(user);
+            }
+        })
+    })
 };
